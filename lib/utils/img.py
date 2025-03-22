@@ -23,6 +23,16 @@ def get_test_transform():
     ]
     return transforms.Compose(transform_list)
 
+def get_demo_transform():
+    transform_list = [
+        transforms.Resize(size=(512, 512)),
+        transforms.ToTensor(), 
+        transforms.Normalize(
+            mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
+        ),
+    ]
+    return transforms.Compose(transform_list)
+
 def unnormalize(tensor, mean, std):
     mean = torch.tensor(mean).view(1, -1, 1, 1).to(tensor.device)
     std = torch.tensor(std).view(1, -1, 1, 1).to(tensor.device)
