@@ -4,3 +4,6 @@ data
 output
 __pycache__
 *.mp4
+
+!assets/output_test_video.mp4
+!assets/output_val_video.mp4
