@@ -24,8 +24,8 @@ def main(args):
     style_image = Image.open(args.style_image).convert("RGB")
 
     demo_transform = get_demo_transform()
-    content_image = demo_transform(content_image).unsqueeze(0)
-    style_image = demo_transform(style_image).unsqueeze(0)
+    content_image = demo_transform(content_image).unsqueeze(0).cuda()
+    style_image = demo_transform(style_image).unsqueeze(0).cuda()
     output = st_net.generate(content_image, style_image)
     
     output_folder = "demo_out"
@@ -35,11 +35,7 @@ def main(args):
     style_image = unnormalize(style_image, mean, std)
     output = unnormalize(output, mean, std)
 
-    content_list = [content_image]
-    style_list = [style_image]
-    output_list = [output]
-
-    combined_tensor = torch.stack(content_list + style_list + output_list, dim=0)
+    combined_tensor = torch.concat([content_image, style_image, output], dim=3)
     save_path = f"demo_out/composite.png"
     torchvision.utils.save_image(combined_tensor, save_path)
     save_path = f"demo_out/out.png"
