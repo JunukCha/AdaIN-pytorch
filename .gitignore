@@ -3,9 +3,5 @@
 data
 output
 __pycache__
-*.mp4
 save_data_txt.py
 demo_out
-
-!assets/output_test_video.mp4
-!assets/output_val_video.mp4
