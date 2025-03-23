@@ -20,7 +20,9 @@ class ImageDataset(Dataset):
         ])
 
     def __len__(self):
-        if self.num_data is not None:
+        if self.test:
+            return 8
+        elif self.num_data is not None:
             return self.num_data
         else:
             return len(self.content_paths)
