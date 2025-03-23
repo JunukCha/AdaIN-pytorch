@@ -22,7 +22,7 @@ def images_to_gif(image_folder, output_path, prefix="output_test_", ext=".png", 
     # Calculate frame duration in seconds (duration per frame = 1 / fps)
     duration = 1.0 / fps
     os.makedirs(osp.dirname(output_path), exist_ok=True)
-    imageio.mimsave(output_path, images, duration=duration)
+    imageio.mimsave(output_path, images, duration=duration, loop=0)
     print(f"GIF saved to {output_path}")
 
 # Create GIFs from images with different prefixes.
